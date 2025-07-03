@@ -1,7 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
   <%@ page import="java.util.List" %>
     <%@ page import="com.alonso.webapp.proyecto.models.Aerolinea" %>
-
+    <%@ page import="com.alonso.webapp.proyecto.models.enums.Estatus" %>
+    <%
+      Aerolinea aerolinea = (Aerolinea) request.getAttribute("aerolinea");
+    %>
       <!DOCTYPE html>
       <html lang="es">
 
@@ -14,7 +17,8 @@
 
       <body>
         <div class="container mt-5">
-          <h2 class="mb-4">Registro de Aerolínea</h2>
+          <h2 class="mb-4">Edición de Aerolíneas</h2>
+          <h3>Aerolinea <%=aerolinea.getNombre()%></h3>
           <% List<String> errores = (List<String>) request.getAttribute("errores");
               if (errores != null && !errores.isEmpty()) {
 
@@ -29,15 +33,18 @@
                 </ul>
               </div>
               <% } %>
-                <form action="<%=request.getContextPath()%>/aerolineas/alta" method="post">
+                <form action="<%=request.getContextPath()%>/aerolineas/actualizar" method="post">
+                  <div class="mb-3">
+                    <input type="hidden" class="form-control" id="id" name="id" value="<%=aerolinea.getId()%>">
+                  </div>
                   <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" value="${param.nombre}"
+                    <input type="text" class="form-control" id="nombre" name="nombre" value="<%=aerolinea.getNombre()%>"
                       pattern=".*\S.*" required>
                   </div>
                   <div class="mb-3">
                     <label for="iata" class="form-label">Código IATA</label>
-                    <input type="text" class="form-control" id="iata" name="iata" value="${param.iata}" pattern=".*\S.*"
+                    <input type="text" class="form-control" id="iata" name="iata" value="<%=aerolinea.getIata()%>" pattern=".*\S.*"
                       required>
                   </div>
                   <div class="mb-3">
@@ -57,18 +64,18 @@
                   <div class="mb-3">
                     <label for="estatus" class="form-label">Estatus</label>
                     <select class="form-select" id="estatus" name="estatus" required>
-                      <option value="1">Disponible</option>
-                      <option value="2">No Disponible</option>
+                      <option value="1" <%= aerolinea.getEstatus() == Estatus.DISPONIBLE ? "selected" : "" %>>Disponible</option>
+                      <option value="2" <%= aerolinea.getEstatus() == Estatus.NO_DISPONIBLE ? "selected" : "" %>>No Disponible</option>
                     </select>
                   </div>
                   <div class="mb-3">
                     <label for="fundacion" class="form-label">Fecha de Fundación</label>
                     <input type="date" class="form-control" id="fundacion" name="fundacion"
-                      value="${param.fundacion}" pattern=".*\S.*" required>
+                      value="<%=aerolinea.getFechaFundacion()%>" pattern=".*\S.*" required>
                   </div>
                   <div class="d-flex justify-content-between">
                     <a href="<%=request.getContextPath()%>/aerolineas/listar" class="btn btn-secondary">Volver</a>
-                    <button type="submit" class="btn btn-primary">Registrar Aerolinea</button>
+                    <button type="submit" class="btn btn-primary">Actualizar Aerolinea</button>
                   </div>
                 </form>
         </div>
