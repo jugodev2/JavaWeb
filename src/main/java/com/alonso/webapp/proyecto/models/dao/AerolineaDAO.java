@@ -48,17 +48,46 @@ public class AerolineaDAO implements IDAO<Aerolinea> {
 
     @Override
     public void insertar(Aerolinea elemento) throws SQLException {
+        String sql = "CALL NUEVA_AEROLINEA(?, ?, ?, ?, ?, ?)";
+
+        try (CallableStatement cs = conn.prepareCall(sql)) {
+            cs.setLong(1, 0L);// SE TRABAAJA CON 0
+            cs.setString(2, elemento.getNombre());
+            cs.setString(3, elemento.getIata());
+            cs.setString(4, elemento.getPais());
+            cs.setDate(5, Date.valueOf(elemento.getFechaFundacion()));
+            cs.setLong(6, elemento.getEstatus() == Estatus.DISPONIBLE ? 1 : 2);
+            cs.executeUpdate();
+        }
+
 
     }
 
     @Override
     public void editor(Aerolinea elemento) throws SQLException {
+        String sql = "CALL NUEVA_AEROLINEA(?, ?, ?, ?, ?, ?)";
+
+        try (CallableStatement cs = conn.prepareCall(sql)) {
+            cs.setLong(1, elemento.getId());// SE TRABAAJA CON 0
+            cs.setString(2, elemento.getNombre());
+            cs.setString(3, elemento.getIata());
+            cs.setString(4, elemento.getPais());
+            cs.setDate(5, Date.valueOf(elemento.getFechaFundacion()));
+            cs.setLong(6, elemento.getEstatus() == Estatus.DISPONIBLE ? 1 : 2);
+            cs.executeUpdate();
+        }
+
 
     }
 
     @Override
     public void eliminar(Long id) throws SQLException {
+        String sql = "CALL ELIMINAR_AEROLINEA(?)";
 
+        try (CallableStatement cs = conn.prepareCall(sql)) {
+            cs.setLong(1, id);// SE TRABAAJA CON 0
+            cs.executeUpdate();
+        }
     }
 
     @Override

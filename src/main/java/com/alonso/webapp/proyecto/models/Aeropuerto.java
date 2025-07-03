@@ -7,6 +7,7 @@ public class Aeropuerto {
 
     private Long id;
     private String nombre;
+    private String codigo;
     private String latitud;
     private String longitud;
     private String pais;
@@ -18,13 +19,14 @@ public class Aeropuerto {
 
     }
 
-    public Aeropuerto(Long id, String nombre, String latitud, String longitud, String pais, Estatus estatus) {
+    public Aeropuerto(Long id, String nombre, String codigo, String latitud, String longitud, String pais, Estatus estatus) {
         this.id = id;
         this.nombre = nombre;
         this.latitud = latitud;
         this.longitud = longitud;
         this.pais = pais;
         this.estatus = estatus;
+        this.codigo = codigo;
     }
 
     public Long getId() {
@@ -81,6 +83,14 @@ public class Aeropuerto {
 
     public static void setLastId(Long lastId) {
         Aeropuerto.lastId = lastId;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     @Override
