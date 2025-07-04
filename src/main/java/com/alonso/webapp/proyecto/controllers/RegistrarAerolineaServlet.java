@@ -15,7 +15,6 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -51,8 +50,6 @@ public class RegistrarAerolineaServlet extends HttpServlet {
             errores.add("El estatus obligatorio");
         }if (pais == null || pais.isBlank()){
             errores.add("El Pais es obligatorio");
-        }if (aerolinea == null || aerolinea.isBlank()){
-            errores.add("La Aaerolinea es obligatoria");
         }
 
         LocalDate fechaFundacion = null;
@@ -69,7 +66,7 @@ public class RegistrarAerolineaServlet extends HttpServlet {
             }
         }
 
-        if (errores.isEmpty()){
+        if (!errores.isEmpty()){
             req.setAttribute("errores", errores);
             doGet(req, resp);
             return;

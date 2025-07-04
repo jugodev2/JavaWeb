@@ -32,7 +32,7 @@ public class AerolineaDAO implements IDAO<Aerolinea> {
     @Override
     public Optional<Aerolinea> buscarPorId(Long id) throws SQLException {
         Aerolinea aerolinea = null;
-        String query = "SELECT *FROM A WHERE ID_AEROLINEA = ?";
+        String query = "SELECT * FROM AEROLINEA WHERE ID_AEROLINEA = ?";
 
         try (PreparedStatement stmt = conn.prepareStatement(query)){
             stmt.setLong(1,id);
@@ -63,7 +63,6 @@ public class AerolineaDAO implements IDAO<Aerolinea> {
     @Override
     public void editor(Aerolinea elemento) throws SQLException {
         String sql = "CALL NUEVA_AEROLINEA(?, ?, ?, ?, ?, ?)";
-
         try (CallableStatement cs = conn.prepareCall(sql)) {
             cs.setLong(1, elemento.getId());// SE TRABAAJA CON 0
             cs.setString(2, elemento.getNombre());
@@ -73,14 +72,11 @@ public class AerolineaDAO implements IDAO<Aerolinea> {
             cs.setLong(6, elemento.getEstatus() == Estatus.DISPONIBLE ? 1 : 2);
             cs.executeUpdate();
         }
-
-
     }
 
     @Override
     public void eliminar(Long id) throws SQLException {
         String sql = "CALL ELIMINAR_AEROLINEA(?)";
-
         try (CallableStatement cs = conn.prepareCall(sql)) {
             cs.setLong(1, id);// SE TRABAAJA CON 0
             cs.executeUpdate();
