@@ -56,7 +56,6 @@ public class EditarAeropuertoServlet extends HttpServlet {
         Connection con = (Connection) req.getAttribute("conn");
         AeropuertoDAO dao = new AeropuertoDAO(con);
 
-
         String nombre = req.getParameter("nombre");
         String codigo = req.getParameter("codigo");
         String latitud = req.getParameter("latitud");
@@ -110,9 +109,5 @@ public class EditarAeropuertoServlet extends HttpServlet {
             log.log(Level.SEVERE, "ERROR AL ACTUALIZAR AEROPUERTO" + e.getMessage(),e);
             getServletContext().getRequestDispatcher("/error.jsp").forward(req, resp);
         }
-
-
     }
-
-
 }

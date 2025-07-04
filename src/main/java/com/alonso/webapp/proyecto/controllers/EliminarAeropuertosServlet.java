@@ -1,8 +1,6 @@
 package com.alonso.webapp.proyecto.controllers;
 
-import com.alonso.webapp.proyecto.models.Aerolinea;
 import com.alonso.webapp.proyecto.models.Aeropuerto;
-import com.alonso.webapp.proyecto.models.dao.AerolineaDAO;
 import com.alonso.webapp.proyecto.models.dao.AeropuertoDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

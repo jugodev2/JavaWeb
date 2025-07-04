@@ -49,7 +49,6 @@ public class AerolineaDAO implements IDAO<Aerolinea> {
     @Override
     public void insertar(Aerolinea elemento) throws SQLException {
         String sql = "CALL NUEVA_AEROLINEA(?, ?, ?, ?, ?, ?)";
-
         try (CallableStatement cs = conn.prepareCall(sql)) {
             cs.setLong(1, 0L);// SE TRABAAJA CON 0
             cs.setString(2, elemento.getNombre());
@@ -59,8 +58,6 @@ public class AerolineaDAO implements IDAO<Aerolinea> {
             cs.setLong(6, elemento.getEstatus() == Estatus.DISPONIBLE ? 1 : 2);
             cs.executeUpdate();
         }
-
-
     }
 
     @Override

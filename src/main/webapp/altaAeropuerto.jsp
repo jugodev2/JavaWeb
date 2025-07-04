@@ -17,8 +17,7 @@
 
       <body>
         <div class="container mt-5">
-          <h2 class="mb-4">Edición de Aeropuertos</h2>
-          <h3>Aeropuerto <%=aeropuerto.getNombre()%></h3>
+          <h2 class="mb-4">Alta de Aeropuertos</h2>
           <% List<String> errores = (List<String>) request.getAttribute("errores");
               if (errores != null && !errores.isEmpty()) {
 
@@ -33,28 +32,25 @@
                 </ul>
               </div>
               <% } %>
-                <form action="<%=request.getContextPath()%>/aeropuertos/actualizar" method="post">
-                  <div class="mb-3">
-                    <input type="hidden" class="form-control" id="id" name="id" value="<%=aeropuerto.getId()%>">
-                  </div>
+                <form action="<%=request.getContextPath()%>/aeropuertos/alta" method="post">
                   <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" value="<%=aeropuerto.getNombre()%>"
+                    <input type="text" class="form-control" id="nombre" name="nombre" value="${param.nombre}"
                       pattern=".*\S.*" required>
                   </div>
                   <div class="mb-3">
                     <label for="codigo" class="form-label">Código del Aeropuerto</label>
-                    <input type="text" class="form-control" id="codigo" name="codigo" value="<%=aeropuerto.getCodigo()%>" pattern=".*\S.*"
+                    <input type="text" class="form-control" id="codigo" name="codigo" value="${param.codigo}" pattern=".*\S.*"
                       required>
                   </div>
                   <div class="mb-3">
                     <label for="latitud" class="form-label">Latitud</label>
-                    <input type="text" class="form-control" id="latitud" name="latitud" value="<%=aeropuerto.getLatitud()%>" pattern=".*\S.*"
+                    <input type="text" class="form-control" id="latitud" name="latitud" value="${param.latitud}" pattern=".*\S.*"
                       required>
                   </div>
                   <div class="mb-3">
                     <label for="longitud" class="form-label">Código </label>
-                    <input type="text" class="form-control" id="longitud" name="longitud" value="<%=aeropuerto.getLongitud()%>" pattern=".*\S.*"
+                    <input type="text" class="form-control" id="longitud" name="longitud" value="${param.longitud}" pattern=".*\S.*"
                       required>
                   </div>
                   <div class="mb-3">
@@ -74,13 +70,13 @@
                   <div class="mb-3">
                     <label for="estatus" class="form-label">Estatus</label>
                     <select class="form-select" id="estatus" name="estatus" required>
-                      <option value="1" <%= aeropuerto.getEstatus() == Estatus.DISPONIBLE ? "selected" : "" %>>Disponible</option>
-                      <option value="2" <%= aeropuerto.getEstatus() == Estatus.NO_DISPONIBLE ? "selected" : "" %>>No Disponible</option>
+                      <option value="1">Disponible</option>
+                      <option value="2">No Disponible</option>
                     </select>
                   </div>
                   <div class="d-flex justify-content-between">
                     <a href="<%=request.getContextPath()%>/aeropuertos/listar" class="btn btn-secondary">Volver</a>
-                    <button type="submit" class="btn btn-primary">Actualizar Aeropuerto</button>
+                    <button type="submit" class="btn btn-primary">Registrar Aeropuerto</button>
                   </div>
                 </form>
         </div>

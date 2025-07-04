@@ -51,7 +51,18 @@ public class AvionDAO implements IDAO<Avion> {
 
     @Override
     public void insertar(Avion elemento) throws SQLException {
-
+        String sql = "CALL NUEVO_AVION(?, ?, ?, ?, ?, ?, ?, ?)";
+        try (CallableStatement cs = conn.prepareCall(sql)) {
+            cs.setLong(1, 0L);// SE TRABAAJA CON 0
+            cs.setLong(2, elemento.getNumeroRegistro());
+            cs.setString(3, elemento.getTipo());
+            cs.setString(4, elemento.getCodigoModelo());
+            cs.setLong(5, elemento.getCapacidad());
+            cs.setDate(6, Date.valueOf(elemento.getFechaPrimerVuelo()));
+            cs.setLong(7, elemento.getEstatus() == Estatus.DISPONIBLE ? 1 : 2);
+            cs.setObject(8, elemento.getAerolinea());
+            cs.executeUpdate();
+        }
     }
 
     @Override
