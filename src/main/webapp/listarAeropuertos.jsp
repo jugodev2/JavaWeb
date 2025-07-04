@@ -28,10 +28,11 @@
                         <th>Longitud</th>
                         <th>Pais</th>
                         <th>Estatus</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
                         </tr>
                       <% int contador=1;
                       for(Aeropuerto a: aeropuertos){
-
                         %>
                         <tr>
                           <td><%= a.getId() %></td>
@@ -43,12 +44,50 @@
                           <td><%=a.getLongitud()%></td>
                           <td><%=a.getPais()%></td>
                           <td><%=a.getEstatus().getEstatusEnum()%></td>
+                          <td>
+                            <form action="<%=request.getContextPath()%>/aeropuertos/actualizar" method="get" style="display: inline;">
+                              <input type="hidden" name="id" value="<%=a.getId()%>"/>
+                              <button type="submit" class="btn btn-primary btn-sm me-1">
+                                <i class="fas fa-edit">Editar</i>
+                              </button>
+                            </form>
+                          </td>
+                          <td>
+                            <form action="<%=request.getContextPath()%>/aeropuertos/eliminar" method="post" style="display: inline;" class="delete-form">
+                              <input type="hidden" name="id" value="<%=a.getId()%>"/>
+                              <button type="button" class="btn btn-danger btn-sm ms-1 delete-btn">
+                                <i class="fas fa-trash-alt">Eliminar</i>
+                              </button>
+                            </form>
+                          </td>
                         </tr>
                         <% contador++; } %>
                       </tbody>
                     </thead>
                   </table>
                 </div>
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.1/dist/sweetalert2.all.min.js"></script>
+                <script>
+                  document.querySelectorAll('.delete-btn').forEach(button => {
+                    button.addEventListener('click', function (event) {
+                      const form = this.closest('form');
+                      Swal.fire({
+                        title: 'Estas Seguro que deseas eliminar la aerolinea?',
+                        text: 'No podras revertir esta accion!',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Si, eliminar!',
+                        cancelButtonText: 'Cancelar'
+                      }).then((result) =>{
+                        if (result.isConfirmed) {
+                          form.submit();
+                        }
+                      });
+                    });
+                  });
+                </script>
               </body>
 
               </html>

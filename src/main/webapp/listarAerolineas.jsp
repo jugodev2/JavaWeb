@@ -8,7 +8,6 @@
               %>
               <!DOCTYPE html>
               <html lang="es">
-
               <head>
                 <meta charset="UTF-8">
                 <title>Tabla de Aerolineas</title>
@@ -16,7 +15,6 @@
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
                 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet"> <!-- Para los íconos -->
               </head>
-
               <body>
                 <div class="container mt-5">
                   <h2 class="mb-4">Lista de Aerolineas</h2>
@@ -83,20 +81,13 @@
                         cancelButtonColor: '#d33',
                         confirmButtonText: 'Si, eliminar!',
                         cancelButtonText: 'Cancelar'
-
                       }).then((result) =>{
                         if (result.isConfirmed) {
                           form.submit();
                         }
                       });
                     });
-
                   });
-
                 </script>
-
-
-
               </body>
-
               </html>

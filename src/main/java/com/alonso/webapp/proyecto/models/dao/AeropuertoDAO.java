@@ -47,17 +47,42 @@ public class AeropuertoDAO implements IDAO<Aeropuerto> {
 
     @Override
     public void insertar(Aeropuerto elemento) throws SQLException {
-
+        String sql = "CALL NUEVO_AEROPUERTO(?, ?, ?, ?, ?, ?, ?)";
+        try (CallableStatement cs = conn.prepareCall(sql)) {
+            cs.setLong(1, 0L);// SE TRABAAJA CON 0
+            cs.setString(2, elemento.getNombre());
+            cs.setString(3, elemento.getCodigo());
+            cs.setString(4, elemento.getLatitud());
+            cs.setString(5, elemento.getLongitud());
+            cs.setString(6, elemento.getPais());
+            cs.setLong(7, elemento.getEstatus() == Estatus.DISPONIBLE ? 1 : 2);
+            cs.executeUpdate();
+        }
     }
 
     @Override
     public void editor(Aeropuerto elemento) throws SQLException {
-
+        String sql = "CALL NUEVO_AEROPUERTO(?, ?, ?, ?, ?, ?, ?)";
+        try (CallableStatement cs = conn.prepareCall(sql)) {
+            cs.setLong(1, elemento.getId());// SE TRABAAJA CON 0
+            cs.setString(2, elemento.getNombre());
+            cs.setString(3, elemento.getCodigo());
+            cs.setString(4, elemento.getLatitud());
+            cs.setString(5, elemento.getLongitud());
+            cs.setString(6, elemento.getPais());
+            cs.setLong(7, elemento.getEstatus() == Estatus.DISPONIBLE ? 1 : 2);
+            cs.executeUpdate();
+        }
     }
 
     @Override
     public void eliminar(Long id) throws SQLException {
+        String sql = "CALL ELIMINAR_AEROPUERTO(?)";
 
+        try (CallableStatement cs = conn.prepareCall(sql)) {
+            cs.setLong(1, id);// SE TRABAAJA CON 0
+            cs.executeUpdate();
+        }
     }
 
     @Override

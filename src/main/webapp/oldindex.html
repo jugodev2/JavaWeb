@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Java Web</title>
+</head>
+<body>
+
+
+
+<h1>Hola Mundo Tomcat!!</h1>
+<ul>
+    <li><a href="/JavaWeb/parametros?saludo=hola">Enviando Saludo: saludo = hola</a></li>
+    <li><a href="/JavaWeb/parametros?saludo=hola&nombre=Alonso">
+        Enviando parmetro saludo y nombre: saludo = hola & nombre = Alonso </a></li>
+    <li><a href="/JavaWeb/parametros?saludo=hola&nombre=Alonso&codigo=666">
+        Enviando parmetro saludo, nombre y codigo: saludo = hola & nombre = Alonso & codigo = 666</a></li>
+</ul>
+
+<h1>Formulario de Prueba</h1>
+<form method="post" action="parametros">
+    <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" name="nombre" required>
+    </div>
+    <br>
+    <br>
+    <div class="form-group">
+        <label for="edad">Edad</label>
+        <input type="text" id="edad" name="edad" required>
+    </div>
+    <br>
+    <button type="submit"><i class="fa fa-trash"></i>Enviar</button>
+</form>
+
+<li><a href="primero?metodo=redirect">Usar sendRedirect</a></li>
+<li><a href="primero?metodo=forward">Usar forward</a></li>
+
+</body>
+</html>

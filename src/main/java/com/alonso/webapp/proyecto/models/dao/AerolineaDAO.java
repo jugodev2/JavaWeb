@@ -32,7 +32,7 @@ public class AerolineaDAO implements IDAO<Aerolinea> {
     @Override
     public Optional<Aerolinea> buscarPorId(Long id) throws SQLException {
         Aerolinea aerolinea = null;
-        String query = "SELECT *FROM AEROLINEA WHERE ID_AEROLINEA = ?";
+        String query = "SELECT *FROM A WHERE ID_AEROLINEA = ?";
 
         try (PreparedStatement stmt = conn.prepareStatement(query)){
             stmt.setLong(1,id);
