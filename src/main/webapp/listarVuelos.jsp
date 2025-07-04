@@ -49,7 +49,7 @@
                           <td><%=fechaFormateada%></td>
                           <td><%=a.getEstatus().getEstatusEnum()%></td>
                           <td>
-                            <form action="<%=request.getContextPath()%>/aeropuertos/actualizar" method="get" style="display: inline;">
+                            <form action="<%=request.getContextPath()%>/aviones/actualizar" method="get" style="display: inline;">
                               <input type="hidden" name="id" value="<%=a.getId()%>"/>
                               <button type="submit" class="btn btn-primary btn-sm me-1">
                                 <i class="fas fa-edit">Editar</i>
@@ -57,7 +57,7 @@
                             </form>
                           </td>
                           <td>
-                            <form action="<%=request.getContextPath()%>/aeropuertos/eliminar" method="post" style="display: inline;" class="delete-form">
+                            <form action="<%=request.getContextPath()%>/aviones/eliminar" method="post" style="display: inline;" class="delete-form">
                               <input type="hidden" name="id" value="<%=a.getId()%>"/>
                               <button type="button" class="btn btn-danger btn-sm ms-1 delete-btn">
                                 <i class="fas fa-trash-alt">Eliminar</i>

@@ -68,6 +68,17 @@ public class EditarAvionesServlet extends HttpServlet {
         String estatus = req.getParameter("estatus");
         String id = req.getParameter("aerolinea");
 
+        long idAv = 0;
+
+        try {
+            idAv = Long.valueOf(req.getParameter("id"));
+
+        } catch (NumberFormatException e) {
+            req.setAttribute("exception", e);
+            log.log(Level.SEVERE, "ERROR AL OBTENER EL ID DEL AVION: " + e.getMessage(),e);
+            getServletContext().getRequestDispatcher("/error.jsp").forward(req, resp);
+        }
+
         long num = 0;
         int capa = 0;
         long aeroId = 0;
@@ -133,7 +144,7 @@ public class EditarAvionesServlet extends HttpServlet {
         if (aerolineaOptional.isPresent()) {
             aerolinea = aerolineaOptional.get();
         }
-        Avion avion = new Avion(0L, num,tipo, codigo, capa, fechaPrimerVuelo,
+        Avion avion = new Avion(idAv, num,tipo, codigo, capa, fechaPrimerVuelo,
                 Integer.parseInt(estatus) == 1 ? Estatus.DISPONIBLE : Estatus.NO_DISPONIBLE,
                 aerolinea);
         try {

@@ -49,7 +49,7 @@ public class RegistrarAvionesServlet extends HttpServlet {
 
         String numRegistro = req.getParameter("registro");
         String tipo = req.getParameter("tipo");
-        String codigo = req.getParameter("estatus");
+        String codigo = req.getParameter("codigo");
         String capacidad = req.getParameter("capacidad");
         String primer = req.getParameter("primer");
         String estatus = req.getParameter("estatus");

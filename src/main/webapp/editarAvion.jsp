@@ -34,6 +34,9 @@
               <% } %>
                 <form action="<%=request.getContextPath()%>/aviones/actualizar" method="post">
                   <div class="mb-3">
+                    <input type="hidden" class="form-control" id="id" name="id" value="<%=avion.getId()%>">
+                  </div>
+                  <div class="mb-3">
                     <label for="registro" class="form-label">Numero de Registro</label>
                     <input type="number" class="form-control" id="registro" name="registro" value="<%=avion.getNumeroRegistro()%>"
                       pattern=".*\S.*" required>
