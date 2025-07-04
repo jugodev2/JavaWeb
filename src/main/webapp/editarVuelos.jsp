@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
   <%@ page import="java.util.List" %>
-    <%@ page import="com.alonso.webapp.proyecto.models.Vuelos" %>
+    <%@ page import="com.alonso.webapp.proyecto.models.Vuelo" %>
     <%@ page import="com.alonso.webapp.proyecto.models.Avion" %>
     <%@ page import="com.alonso.webapp.proyecto.models.Aeropuerto" %>
 
@@ -44,7 +44,7 @@
                   </div>
                 <div class="mb-3">
                     <label for="codigo" class="form-label">Codigo de Vuelo</label>
-                    <input type="text" class="form-control" id="codigo" name="codigo" value="<%=avion.getCodigoVuelo()%>" pattern=".*\S.*"
+                    <input type="text" class="form-control" id="codigo" name="codigo" value="<%=vuelo.getCodigoVuelo()%>" pattern=".*\S.*"
                       required>
                   </div>
                    <label for="avion" class="form-label">Aviones</label>

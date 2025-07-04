@@ -157,11 +157,11 @@ public class RegistroVuelosServlet extends HttpServlet {
 
         try {
             dao.insertar(vuelo);
-            log.info("NUEVO AVION REGISTRADO: "+req.getParameter("aerolinea"));
+            log.info("NUEVO VUELO REGISTRADO: "+req.getParameter("vuelos"));
             resp.sendRedirect(req.getContextPath()+"/vuelos/listar");
         }catch (SQLException e){
             req.setAttribute("exception", e);
-            log.log(Level.SEVERE, "ERROR AL CREAR AVION" + e.getMessage(),e);
+            log.log(Level.SEVERE, "ERROR AL CREAR VUELO" + e.getMessage(),e);
             getServletContext().getRequestDispatcher("/error.jsp").forward(req, resp);
         }
 

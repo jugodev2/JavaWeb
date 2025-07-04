@@ -52,7 +52,7 @@ public class EditarAvionesServlet extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        getServletContext().getRequestDispatcher("/altaAvion.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/editarAvion.jsp").forward(req, resp);
     }
 
     @Override

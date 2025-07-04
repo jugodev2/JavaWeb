@@ -30,7 +30,7 @@ public class VueloDAO implements IDAO<Vuelo> {
     }
 
     @Override
-    public Optional buscarPorId(Long id) throws SQLException {
+    public Optional<Vuelo> buscarPorId(Long id) throws SQLException {
         Vuelo vuelo = null;
         String query = "SELECT *FROM VUELO WHERE ID_VUELO = ?";
 
