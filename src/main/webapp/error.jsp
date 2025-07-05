@@ -88,7 +88,7 @@
              alt="Error" />
 
         <div class="d-flex justify-content-center gap-3 mt-4">
-            <a href="<%=request.getContextPath()%>" class="btn btn-primary">Volver al inicio</a>
+            <a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-primary">Volver al inicio</a>
             <button id="playAudioBtn" class="btn btn-primary">Reproducir sonido de error</button>
         </div>
 

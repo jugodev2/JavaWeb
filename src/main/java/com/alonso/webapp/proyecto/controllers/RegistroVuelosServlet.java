@@ -80,6 +80,11 @@ public class RegistroVuelosServlet extends HttpServlet {
         }else {
             idOri = Long.parseLong(origen);
         }
+        if (destino == null || destino.isBlank()) {
+            errores.add("El Destino es obligatorio");
+        }else {
+            idDest = Long.parseLong(destino);
+        }
         if (estatus == null || (!estatus.equals("1") && !estatus.equals("2"))) {
             errores.add("El estatus obligatorio");
         }
@@ -92,13 +97,18 @@ public class RegistroVuelosServlet extends HttpServlet {
             idDest = Long.parseLong(destino);
         }
 
+        if (idOri == idDest){
+            errores.add("El Lugar de Origen no puede ser el mismo que el de Origen.");
+
+        }
+
         LocalDate fechaSalida = null;
         if (salida == null || salida.isBlank()) {
             errores.add("La fecha de Salida es obligatoria");
         } else {
             try {
                 fechaSalida = LocalDate.parse(salida);
-                if (!fechaSalida.isAfter(LocalDate.now())) {
+                if (fechaSalida.isBefore(LocalDate.now())) {
                     errores.add("La fecha de Salida NO debe ser anterior a la fecha actal");
                 }
             } catch (DateTimeParseException e) {

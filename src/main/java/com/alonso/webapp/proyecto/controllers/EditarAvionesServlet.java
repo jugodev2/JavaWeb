@@ -105,6 +105,9 @@ public class EditarAvionesServlet extends HttpServlet {
             errores.add("La capacidad es obligatoria");
         } else {
             capa = Integer.parseInt(capacidad);
+            if (capa <=0 ){
+                errores.add("La capacidad no puede ser menor o igual a 0");
+            }
         }
         if (id == null || id.isBlank()) {
             errores.add("El id no debe ser vacio.");

@@ -1,10 +1,8 @@
 package com.alonso.webapp.proyecto.controllers;
 
-import com.alonso.webapp.proyecto.models.Aerolinea;
 import com.alonso.webapp.proyecto.models.Aeropuerto;
 import com.alonso.webapp.proyecto.models.Avion;
 import com.alonso.webapp.proyecto.models.Vuelo;
-import com.alonso.webapp.proyecto.models.dao.AerolineaDAO;
 import com.alonso.webapp.proyecto.models.dao.AeropuertoDAO;
 import com.alonso.webapp.proyecto.models.dao.AvionDAO;
 import com.alonso.webapp.proyecto.models.dao.VueloDAO;
@@ -104,6 +102,11 @@ public class EditarVuelosServlet extends HttpServlet {
         }else {
             idOri = Long.parseLong(origen);
         }
+        if (destino == null || destino.isBlank()) {
+            errores.add("El Destino es obligatorio");
+        }else {
+            idDest = Long.parseLong(destino);
+        }
         if (estatus == null || (!estatus.equals("1") && !estatus.equals("2"))) {
             errores.add("El estatus obligatorio");
         }
@@ -115,6 +118,10 @@ public class EditarVuelosServlet extends HttpServlet {
         } else {
             idDest = Long.parseLong(destino);
         }
+        if (idOri == idDest){
+            errores.add("El Lugar de Origen no puede ser el mismo que el de Origen.");
+
+        }
 
         LocalDate fechaSalida = null;
         if (salida == null || salida.isBlank()) {
@@ -122,8 +129,8 @@ public class EditarVuelosServlet extends HttpServlet {
         } else {
             try {
                 fechaSalida = LocalDate.parse(salida);
-                if (!fechaSalida.isAfter(LocalDate.now())) {
-                    errores.add("La fecha de Salida NO debe ser anterior a la fecha actal");
+                if (fechaSalida.isBefore(LocalDate.now())) {
+                    errores.add("La fecha de Salida NO debe ser anterior a la fecha actual");
                 }
             } catch (DateTimeParseException e) {
                 errores.add("La fecha de salida vuelo es invalida");
