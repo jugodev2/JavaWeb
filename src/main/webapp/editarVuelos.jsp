@@ -3,6 +3,8 @@
     <%@ page import="com.alonso.webapp.proyecto.models.Vuelo" %>
     <%@ page import="com.alonso.webapp.proyecto.models.Avion" %>
     <%@ page import="com.alonso.webapp.proyecto.models.Aeropuerto" %>
+    <%@ page import="com.alonso.webapp.proyecto.models.enums.Estatus" %>
+
 
     <%
       Avion avion = (Avion) request.getAttribute("avion");
@@ -107,7 +109,9 @@
                    <% List<Avion> avions = (List<Avion>) request.getAttribute("aviones"); %>
                     <select class="form-select" id="avion" name="avion" required>
                      <% for (Avion  a : avions){ %>
-                      <option value="<%=a.getId()%>"><%=a.getTipo()%> <%=a.getCodigoModelo()%></option>
+                     <option value="<%=a.getId()%>" <%=a.getId() == vuelo.getAvion().getId() ? "selected" : ""%> >
+                       <%=a.getTipo()%> <%=a.getCodigoModelo()%>
+                     </option>
                       <% } %>
                     </select>
 
@@ -115,23 +119,27 @@
                    <% List<Aeropuerto> origenes = (List<Aeropuerto>) request.getAttribute("origenes"); %>
                     <select class="form-select" id="origen" name="origen" required>
                      <% for (Aeropuerto  a : origenes){ %>
-                      <option value="<%=a.getId()%>"><%=a.getNombre()%> - <%=a.getPais()%></option>
-                      <% } %>
+                     <option value="<%=a.getId()%>" <%=a.getId() == vuelo.getOrigen().getId() ? "selected" : ""%> >
+                       <%=a.getNombre()%> <%=a.getPais()%>
+                     </option>
+                     <% } %>
                     </select>
 
                     <label for="destino" class="form-label">Aeropuerto Destino</label>
                    <% List<Aeropuerto> destinos = (List<Aeropuerto>) request.getAttribute("destinos"); %>
                     <select class="form-select" id="destino" name="destino" required>
                      <% for (Aeropuerto  a : destinos){ %>
-                      <option value="<%=a.getId()%>"><%=a.getNombre()%> - <%=a.getPais()%></option>
-                      <% } %>
+                     <option value="<%=a.getId()%>" <%=a.getId() == vuelo.getDestino().getId() ? "selected" : ""%> >
+                       <%=a.getNombre()%> <%=a.getPais()%>
+                     </option>
+                     <% } %>
                     </select>
 
                   <div class="mb-3">
                     <label for="estatus" class="form-label">Estatus</label>
                     <select class="form-select" id="estatus" name="estatus" required>
-                      <option value="1">Disponible</option>
-                      <option value="2">No Disponible</option>
+                      <option value="1" <%= vuelo.getEstatus() == Estatus.DISPONIBLE ? "selected" : "" %>>Disponible</option>
+                      <option value="2" <%= vuelo.getEstatus() == Estatus.NO_DISPONIBLE ? "selected" : "" %>>No Disponible</option>
                     </select>
                   </div>
 

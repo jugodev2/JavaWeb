@@ -106,15 +106,15 @@
                   <div class="mb-3">
                     <label for="pais" class="form-label">País</label>
                     <select class="form-select" id="pais" name="pais">
-                      <option value="">Selecciona un país</option>
-                      <option value="Mexico">México</option>
-                      <option value="Argentina">Argentina</option>
-                      <option value="Colombia">Colombia</option>
-                      <option value="Chile">Chile</option>
-                      <option value="Peru">Perú</option>
-                      <option value="España">España</option>
-                      <option value="Estados Unidos">Estados Unidos</option>
-                      <option value="Canada">Canadá</option>
+                     <option value="" <%=aerolinea.getPais().equals("") ? "selected" : "" %>>Selecciona un país</option>
+                      <option value="Mexico" <%=aerolinea.getPais().equals("Mexico") ? "selected" : "" %>>México</option>
+                      <option value="Argentina" <%=aerolinea.getPais().equals("Argentina") ? "selected" : "" %>>Argentina</option>
+                      <option value="Colombia" <%=aerolinea.getPais().equals("Colombia") ? "selected" : "" %>>Colombia</option>
+                      <option value="Chile" <%=aerolinea.getPais().equals("Chile") ? "selected" : "" %>>Chile</option>
+                      <option value="Peru" <%=aerolinea.getPais().equals("Peru") ? "selected" : "" %>>Perú</option>
+                      <option value="España" <%=aerolinea.getPais().equals("España") ? "selected" : "" %>>España</option>
+                      <option value="Estados Unidos" <%=aerolinea.getPais().equals("Estados Unidos") ? "selected" : "" %>>Estados Unidos</option>
+                      <option value="Canada" <%=aerolinea.getPais().equals("Canada") ? "selected" : "" %>>Canadá</option>
                     </select>
                   </div>
                   <div class="mb-3">

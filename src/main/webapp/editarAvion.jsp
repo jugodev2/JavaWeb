@@ -2,6 +2,8 @@
   <%@ page import="java.util.List" %>
     <%@ page import="com.alonso.webapp.proyecto.models.Avion" %>
     <%@ page import="com.alonso.webapp.proyecto.models.Aerolinea" %>
+    <%@ page import="com.alonso.webapp.proyecto.models.enums.Estatus" %>
+
     <%
       Avion avion = (Avion) request.getAttribute("avion");
     %>
@@ -115,8 +117,8 @@
                   <div class="mb-3">
                     <label for="estatus" class="form-label">Estatus</label>
                     <select class="form-select" id="estatus" name="estatus" required>
-                      <option value="1">Disponible</option>
-                      <option value="2">No Disponible</option>
+                      <option value="1" <%= avion.getEstatus() == Estatus.DISPONIBLE ? "selected" : "" %>>Disponible</option>
+                      <option value="2" <%= avion.getEstatus() == Estatus.NO_DISPONIBLE ? "selected" : "" %>>No Disponible</option>
                     </select>
                   </div>
                   <div class="mb-3">
@@ -125,7 +127,9 @@
                    <% List<Aerolinea> aeros = (List<Aerolinea>) request.getAttribute("aerolineas1"); %>
                     <select class="form-select" id="aerolinea" name="aerolinea" required>
                      <% for (Aerolinea  a : aeros){ %>
-                      <option value="<%=a.getId()%>"><%=a.getNombre()%></option>
+                     <option value="<%=a.getId()%>" <%=a.getId() == avion.getAerolinea().getId() ? "selected" : ""%> >
+                       <%=a.getNombre()%>
+                     </option>
                       <% } %>
                     </select>
                   </div>
